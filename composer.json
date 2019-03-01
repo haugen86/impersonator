@@ -1,0 +1,24 @@
+{
+	"name": "lx3/impersonator",
+	"authors": [
+		{
+			"name": "Marius Engen Haugen",
+			"email": "marius@innit.no"
+		}
+	],
+	"autoload": {
+		"psr-4": {
+			"Lx3\\Impersonator\\": "src"
+		}
+	},
+	"repositories": [
+		{
+			"type": "composer",
+			"url": "https://packages.innit.no"
+		}
+	],
+	"require": {
+
+	},
+	"stash": "ssh://git@bitbucket.innit.no:7999/lar/lx3-impersonator.git"
+}
