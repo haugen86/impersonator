@@ -1,4 +1,6 @@
-<?php namespace Lx3\Impersonator\Http\Controllers\Backend;
+<?php
+
+namespace Naust\Impersonator\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\User;
@@ -9,8 +11,6 @@ class ImpersonatorController extends Controller
 {
     /**
      * Create a new controller instance.
-     *
-     * @return void
      */
     public function __construct()
     {
@@ -22,8 +22,9 @@ class ImpersonatorController extends Controller
     /**
      * Impersonate the given user.
      *
-     * @param  Request  $request
-     * @param  string  $userId
+     * @param Request $request
+     * @param string  $userId
+     *
      * @return Response
      */
     public function impersonate(Request $request, $userId)
@@ -34,7 +35,7 @@ class ImpersonatorController extends Controller
         // actually are when we need to stop impersonating the other user, which will
         // allow us to pull the original user back out of the database when needed.
         $request->session()->put(
-            'lx3:impersonator', $request->user()->id
+            'naust:impersonator', $request->user()->id
         );
 
         Auth::login(User::findOrFail($userId));
@@ -45,7 +46,8 @@ class ImpersonatorController extends Controller
     /**
      * Stop impersonating and switch back to primary account.
      *
-     * @param  Request  $request
+     * @param Request $request
+     *
      * @return Response
      */
     public function stopImpersonating(Request $request)
@@ -55,14 +57,14 @@ class ImpersonatorController extends Controller
         // We will make sure we have an impersonator's user ID in the session and if the
         // value doesn't exist in the session we will log this user out of the system
         // since they aren't really impersonating anyone and manually hit this URL.
-        if (! $request->session()->has('lx3:impersonator')) {
+        if (!$request->session()->has('lx3:impersonator')) {
             Auth::logout();
 
             return redirect('/');
         }
 
         $userId = $request->session()->pull(
-            'lx3:impersonator'
+            'naust:impersonator'
         );
 
         // After removing the impersonator user's ID from the session so we can retrieve
