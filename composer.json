@@ -24,7 +24,7 @@
 	"extra": {
 		"laravel": {
 			"providers": [
-				"Naust\\Providers\\ImpersonatorServiceProvider"
+				"Naust\\Impersonator\\Providers\\ImpersonatorServiceProvider"
 			]
 		}
 	}
