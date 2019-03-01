@@ -40,7 +40,7 @@ class ImpersonatorController extends Controller
 
         Auth::login(User::findOrFail($userId));
 
-        return redirect('/home');
+        return redirect('/');
     }
 
     /**
@@ -57,7 +57,7 @@ class ImpersonatorController extends Controller
         // We will make sure we have an impersonator's user ID in the session and if the
         // value doesn't exist in the session we will log this user out of the system
         // since they aren't really impersonating anyone and manually hit this URL.
-        if (!$request->session()->has('lx3:impersonator')) {
+        if (!$request->session()->has('naust:impersonator')) {
             Auth::logout();
 
             return redirect('/');
