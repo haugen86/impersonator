@@ -14,7 +14,9 @@ class VerifyUserIsAdminOrDeveloper
      */
     public function handle($request, $next)
     {
-        if ($request->user() && $request->user()->hasRole(config('impersonator.roles'), 'or')) {
+
+
+        if ($request->user() && $request->user()->hasRole(config('impersonator.roles'))) {
             return $next($request);
         }
 
